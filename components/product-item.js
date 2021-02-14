@@ -6,6 +6,28 @@ class ProductItem extends HTMLElement {
 
     super();
 
+    let item = document.createElement('li');
+    item.setAttribute('class', 'product');
+
+    let image = document.createElement('img');
+    item.appendChild(image);
+
+    let title = document.createElement('p');
+    title.setAttribute('class', 'title');
+    item.appendChild(title);
+
+    let price = document.createElement('p');
+    price.setAttribute('class', 'price');
+    item.appendChild(price);
+
+    let button = document.createElement('button');
+    button.innerHTML = "Add to Cart";
+    button.onclick = () => {
+      var counts = document.getElementById('cart-count').innerHTML;
+      document.getElementById('cart-count').innerHTML = (Number(counts) + 1);
+    }
+    item.appendChild(button);
+
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
       <style>
@@ -88,33 +110,16 @@ class ProductItem extends HTMLElement {
   }
 
   // Get item
-  get item() {
+  get() {
     return this.getAttribute('item');
   }
 
   // Set item
-  set item(item) {
+  set(item) {
     this.shadowRoot.querySelector('img').src = item.image;
-    return this.getAttribute('item');
+    this.shadowRoot.querySelector('.title').innerHTML = item.title;
+    this.shadowRoot.querySelector('.price').innerHTML = item.price;
   }
-
-
-
-
-  /*
-  document.getElementByTagName("BUTTON").onclick = () => {
-    var counts = document.getElementById('cart-count').innerHTML;
-    document.getElementById('cart-count').innerHTML = counts;
-    localStorage.setItem("addd", count)
-  };
-
-  document.getElementsByTagName("BUTTON").onclick = () => {
-    document.getElementById('cart-count').value++;
-  };
-  */
-
-
-
 
 }
 
