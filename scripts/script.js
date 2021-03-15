@@ -4,7 +4,7 @@ let products;
 window.addEventListener('DOMContentLoaded', () => {
 
   // Check if array is already in local storage
-  if (localStorage.getItem('products') == null || localStorage.getItem('products') == "undefined") {
+  if (localStorage.getItem('products') == null) {
 
     // Fetch data from URL to get product items
     fetch('https://fakestoreapi.com/products')
